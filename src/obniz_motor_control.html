@@ -1,0 +1,35 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://obniz.io/js/jquery-3.2.1.min.js"></script>
+  <script src="https://unpkg.com/obniz@1.15.2/obniz.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div id="obniz-debug"></div>
+<h1>モーターOn/Off</h1>
+<button id="on">ON</button><br><br>
+<button id="off">OFF</button>
+
+<script>
+ /* obniz 初期化 */
+let obniz = new Obniz(obniz_ID);
+obniz.onconnect = async function () {
+ obniz.display.clear();
+ obniz.display.print("maepu");
+ /* モータ　初期化 */
+ var motor = obniz.wired("DCMotor", {forward:10, back:11});
+  
+$("#on").on("click",function(){
+  obniz.io10.output(true); 
+  obniz.io11.output(false)
+});
+$("#off").on("click",function(){
+  obniz.io10.output(true)
+  obniz.io11.output(true);
+})
+}
+</script>
+</body>
+</html>
